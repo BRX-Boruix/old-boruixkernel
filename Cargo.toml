@@ -1,0 +1,30 @@
+[workspace]
+members = [
+    "kernel",
+    "kernel_fs",
+    "kernel_platform",
+    "kernel_task",
+    "kernel_driver_hub",
+    "kernel_modules",
+    "kernel_syscall",
+    "serial",
+    "graphics",
+    "config",
+    "logger", "arch", "mm",
+    "flanterm_rust",
+]
+resolver = "2"
+
+[profile.dev]
+panic = "abort"
+codegen-units = 1
+opt-level = 1
+debug = true
+lto = false
+
+[profile.release]
+panic = "abort"
+codegen-units = 1
+opt-level = "s"
+debug = false
+lto = true

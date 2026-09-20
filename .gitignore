@@ -1,0 +1,26 @@
+# Rust build artifacts
+target/
+**/*.rs.bk
+
+# ISO image build directory and output
+iso_root/
+*.iso
+
+# Limine bootloader files (downloaded by Makefile)
+
+limine/
+
+# IDE settings
+.vscode/
+.idea/
+*.swp
+
+# OS generated files
+.DS_Store
+Thumbs.db
+output.git.txt
+output.says.txt
+otherdocs*
+*.log
+*TODO*.md
+*todo.md

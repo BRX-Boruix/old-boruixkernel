@@ -1,0 +1,87 @@
+#![no_std]
+#![no_main]
+
+use user_lib::{sys_write, sys_yield, sys_get_exec_arg};
+
+#[no_mangle]
+fn main() -> i32 {
+    println3("testsmp1: start");
+
+    let arg = sys_get_exec_arg();
+    let total = if arg > 0 { arg as usize } else { 100_000 };
+    print_num("testsmp1: total ", total as isize);
+    let mut i = 0usize;
+    while i < total {
+        print_progress(i as isize);
+        let _ = sys_yield();
+        i += 1;
+    }
+
+    println3("testsmp1: done");
+    0
+}
+
+fn println3(s: &str) {
+    let _ = sys_write(3, s.as_ptr(), s.len());
+    let _ = sys_write(3, "\n".as_ptr(), 1);
+}
+
+fn print_num(prefix: &str, n: isize) {
+    let _ = sys_write(3, prefix.as_ptr(), prefix.len());
+    let mut buf = [0u8; 24];
+    let mut i = 0usize;
+    let mut x = if n < 0 { -n } else { n } as usize;
+    if n < 0 {
+        buf[i] = b'-';
+        i += 1;
+    }
+    if x == 0 {
+        buf[i] = b'0';
+        i += 1;
+    } else {
+        let mut tmp = [0u8; 20];
+        let mut t = 0usize;
+        while x > 0 {
+            tmp[t] = b'0' + (x % 10) as u8;
+            t += 1;
+            x /= 10;
+        }
+        while t > 0 {
+            t -= 1;
+            buf[i] = tmp[t];
+            i += 1;
+        }
+    }
+    let _ = sys_write(3, buf.as_ptr(), i);
+    let _ = sys_write(3, "\n".as_ptr(), 1);
+}
+
+fn print_progress(n: isize) {
+    let _ = sys_write(3, "testsmp1: progress ".as_ptr(), 19);
+    let mut buf = [0u8; 24];
+    let mut i = 0usize;
+    let mut x = if n < 0 { -n } else { n } as usize;
+    if n < 0 {
+        buf[i] = b'-';
+        i += 1;
+    }
+    if x == 0 {
+        buf[i] = b'0';
+        i += 1;
+    } else {
+        let mut tmp = [0u8; 20];
+        let mut t = 0usize;
+        while x > 0 {
+            tmp[t] = b'0' + (x % 10) as u8;
+            t += 1;
+            x /= 10;
+        }
+        while t > 0 {
+            t -= 1;
+            buf[i] = tmp[t];
+            i += 1;
+        }
+    }
+    let _ = sys_write(3, buf.as_ptr(), i);
+    let _ = sys_write(3, "!\n".as_ptr(), 2);
+}

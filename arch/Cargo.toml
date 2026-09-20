@@ -1,0 +1,10 @@
+[package]
+name = "arch"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+x86_64 = "0.14.10"
+spin = "0.9.8"
+logger = { path = "../logger" }
+pic8259 = "0.11.0"

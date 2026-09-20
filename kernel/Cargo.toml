@@ -1,0 +1,22 @@
+[package]
+name = "kernel"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[dependencies]
+arch = { path = "../arch" }
+kernel_platform = { path = "../kernel_platform" }
+kernel_task = { path = "../kernel_task" }
+kernel_driver_hub = { path = "../kernel_driver_hub" }
+kernel_fs = { path = "../kernel_fs" }
+kernel_modules = { path = "../kernel_modules" }
+kernel_syscall = { path = "../kernel_syscall" }
+limine = "0.1"
+logger = { path = "../logger" }
+graphics = { path = "../graphics" }
+config = { path = "../config" }
+serial = { path = "../serial" }
+
+[features]
+debug-syscall = ["kernel_syscall/debug-syscall"]

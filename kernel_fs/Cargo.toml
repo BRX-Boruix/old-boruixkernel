@@ -1,0 +1,14 @@
+[package]
+name = "kernel_fs"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+spin = "0.9"
+kernel_driver_hub = { path = "../kernel_driver_hub" }
+kernel_task = { path = "../kernel_task" }
+kernel_platform = { path = "../kernel_platform" }
+serial = { path = "../serial" }
+
+[features]
+default = []

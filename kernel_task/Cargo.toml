@@ -1,0 +1,14 @@
+[package]
+name = "kernel_task"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[dependencies]
+arch = { path = "../arch" }
+config = { path = "../config" }
+kernel_platform = { path = "../kernel_platform" }
+limine = "0.1"
+logger = { path = "../logger" }
+spin = "0.9.8"
+x86_64 = "0.14.10"

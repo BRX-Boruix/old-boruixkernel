@@ -1,0 +1,20 @@
+[package]
+name = "kernel_syscall"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[dependencies]
+arch = { path = "../arch" }
+kernel_platform = { path = "../kernel_platform" }
+kernel_task = { path = "../kernel_task" }
+kernel_driver_hub = { path = "../kernel_driver_hub" }
+kernel_fs = { path = "../kernel_fs" }
+kernel_modules = { path = "../kernel_modules" }
+logger = { path = "../logger" }
+serial = { path = "../serial" }
+spin = "0.9.8"
+x86_64 = "0.14.10"
+
+[features]
+debug-syscall = []

@@ -1,0 +1,12 @@
+[package]
+name = "kernel_platform"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[dependencies]
+arch = { path = "../arch" }
+mm = { path = "../mm" }
+limine = "0.1"
+logger = { path = "../logger" }
+x86_64 = "0.14.10"

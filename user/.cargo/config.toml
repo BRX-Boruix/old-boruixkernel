@@ -1,0 +1,20 @@
+[build]
+# target = "x86_64-user.json"
+target-dir = "target"
+
+# [unstable]
+# build-std = ["core", "compiler_builtins", "alloc"]
+
+[target.x86_64-user]
+rustflags = [
+    "-Clink-arg=-Tlinker.ld",
+    "-Crelocation-model=static",
+]
+
+[target.x86_64-unknown-none]
+rustflags = [
+    "-Clink-arg=-Tlinker.ld",
+    "-Crelocation-model=static",
+    "-Clink-arg=--no-pie",
+    "-Clink-arg=-zmax-page-size=4096",
+]

@@ -1,0 +1,47 @@
+[package]
+name = "user_lib"
+version = "0.1.0"
+edition = "2021"
+
+[workspace]
+
+[dependencies]
+# compiler_builtins = "0.1"
+linked_list_allocator = { version = "0.10", default-features = false, features = ["use_spin"] }
+
+[profile.release]
+panic = "abort"
+opt-level = "z"
+lto = true
+
+[[bin]]
+name = "initproc"
+path = "src/init/initproc.rs"
+
+[[bin]]
+name = "loop_a"
+path = "src/tests/loop_a.rs"
+
+[[bin]]
+name = "loop_b"
+path = "src/tests/loop_b.rs"
+
+[[bin]]
+name = "rogue"
+path = "src/tests/rogue.rs"
+
+[[bin]]
+name = "testsmp1"
+path = "src/tests/testsmp1.rs"
+
+[[bin]]
+name = "race"
+path = "src/tests/race.rs"
+
+[[bin]]
+name = "ipi"
+path = "src/tests/ipi.rs"
+
+[[bin]]
+name = "memstress"
+path = "src/tests/memstress.rs"
